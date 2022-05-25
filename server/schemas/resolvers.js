@@ -56,7 +56,40 @@ const resolvers = {
 
         const token = signToken(user);
         return {token, user};
-    }
+      },
+      addRestaurant: async (parent, args, context) => {
+          //check if user is logged in
+          if (context.user) {
+              const restaurant = await Restaurant.create({ ...args, username: context.user.username });
+
+              await User.findByAndUpdate(
+                  { _id: context.user._id },
+                  { $push: { restaurant: restaurant._id } },
+                  { new: true }
+              );
+
+              return restaurant;
+          }
+          
+          throw new AuthenticationError("You need to be logged in!")
+      },
+      addComment: async (parent, { restaurantId, commentBody }, context) => {
+          //check if user is logged in
+          if (context.user) {
+              const updatedRestaurant = await Restaurant.findOneAndUpdate(
+                  { _id: restaurantId },
+                  {
+                      $push: {
+                      comments: {commentBody, username: context.user.username}
+                      }
+                  },
+                  {new: true, runValidator: true}
+              )
+              return updatedRestaurant;
+          }
+
+          throw new AuthenticationError("You need to be logged in");
+      }
   },
 };
 
