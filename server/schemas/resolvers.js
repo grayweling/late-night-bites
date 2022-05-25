@@ -1,22 +1,20 @@
 const { User, Restaurant } = require("../models");
 const { AuthenticationError } = require("apollo-server-express");
-//TODO: uncomment when authorization is set up
-// const { signToken } = require("../utils/auth");
+const { signToken } = require("../utils/auth");
 
 const resolvers = {
   Query: {
-    //TODO: uncomment when authentication is set up
-    // me: async (parent, args, context) => {
-    //   if (context.user) {
-    //     const userData = await User.findOne({ _id: context.user._id })
-    //       .select("-__v -password")
-    //       .populate("restaurants");
+    me: async (parent, args, context) => {
+      if (context.user) {
+        const userData = await User.findOne({ _id: context.user._id })
+          .select("-__v -password")
+          .populate("restaurants");
 
-    //     return userData;
-    //   }
+        return userData;
+      }
 
-    //   throw new AuthenticationError("Not logged in");
-    // },
+      throw new AuthenticationError("Not logged in");
+    },
     user: async (parent, { username }) => {
       return User.findOne({ username })
         .select("-__v -password")
@@ -39,12 +37,9 @@ const resolvers = {
   Mutation: {
     addUser: async (parent, {args}) => {
       const user = await User.create(args);
-      //TODO: uncomment when authentication is set up
-      // const token = signToken(user);
+      const token = signToken(user);
 
-      return { user };
-      //TODO: uncomment below and delete above when authentication is set up
-      // return { token, user };
+      return { token, user };
     },
     login: async (parent, { email, password }) => {
         const user = await User.findOne({ email });
@@ -59,9 +54,8 @@ const resolvers = {
 
         }
 
-        // const token = signToken(user);
-        // return {token, user};
-        return {user};
+        const token = signToken(user);
+        return {token, user};
     }
   },
 };
