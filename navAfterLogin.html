@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- tailwind cdn jit link -->
+    <script src="https://cdn-tailwindcss.vercel.app/?plugins=forms,typography,aspect-ratio,line-clamp"></script>
+    <!-- tailwind js link -->
+    <script src="./tailwind.config.js"></script>
+    <!-- font awesome link --> 
+    <script src="https://kit.fontawesome.com/527578a004.js" crossorigin="anonymous"></script>
+    <!-- google fonts link -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;400;500&amp;family=Poppins:wght@100;200;300;400&amp;display=swap" rel="stylesheet">
+    <!-- css link -->
+    <link rel="stylesheet" href="./assets/css/styles.css"/>
+
+    <style type="text/tailwindcss">
+
+
+      .navbar {
+        @apply flex justify-around bg-[#272522] text-center text-4xl;
+      }
+
+      
+      .nav-btn {
+        @apply w-16 h-16 rounded-full;
+      }
+
+      
+    </style>
+
+    <title></title>
+  </head>
+
+  <body class="bg-[#212121]">
+
+    <!-- Main Section -->
+    <main class="min-h-screen min-w-screen flex flex-col">
+ 
+  
+      <section class="profile-picture flex flex-wrap flex-grow justify-center bg-[#212121]"> 
+        
+        <div class="flex flex-col items-center">
+          <h1 class="mt-6 mb-2 text-[#16AC97] text-center text-3xl">Late Night Eats</h1>
+        <div class="icons flex flex-col items-center">
+          <a class="flex mb-8" href="">
+              <i class="fa-solid fa-moon fa-6x text-[#BE95FA]"></i>
+              <i class="mt-4 items-center fa-solid fa-utensils fa-2xl text-[#BE95FA]"></i>
+          </a>
+
+          <h1 class="text-3xl text-[#16AC97] mt-6">Upload Your Eats</h1>
+          <h4 class="text-3xl items-center text-center text-white mx-2 mb-28 mt-12">Looking to share you late night eats experience? To Share, please click the share button below to create a post and upload your post.</h4>
+          </div>
+
+          <button>
+            <a href="">
+              <i class="fa-solid fa-arrow-up-from-bracket fa-4x text-[#16AC97]"></i>
+            </a>
+    
+            <h2 class="text-[#16AC97]">Share</h2>
+          </button>
+
+      </section> 
+
+
+      <!-- Navigation Section -->
+      <nav class="navbar nav-lg text-[#16AC97]">
+
+        <button class="nav-btn btn-hover">
+          <a href=""><i class="fa-solid fa-house-chimney"></i></a>          
+        </button>
+
+        <button class="nav-btn btn-hover">
+          <a href="">
+            <i class="fas fa-chart-bar"></i>
+          </a>
+        </button>
+
+        <button class="nav-btn btn-hover">
+          <a href=""><i class="fa-solid fa-circle-plus"></i></a>             
+        </button>
+
+        <button class="nav-btn btn-hover">
+          <a href=""><i class="fa-solid fa-thumbtack"></i></i></a>            
+        </button>
+      </nav>
+
+    </main>
+  </body>
+</html>
