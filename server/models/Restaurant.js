@@ -18,6 +18,10 @@ const restaurantSchema = new Schema(
         image: {
             //I'm not super sure how to implement an image here yet
         },
+        rating: {
+            type: Number,
+            required: false
+        },
         comments: [
             //unsure what we will be putting here yet
         ]
