@@ -20,7 +20,7 @@ const Footer = () => {
                 <i className="fas fa-chart-bar"></i>
             </Link>
 
-            <Link to="/">
+            <Link to="/create-post">
                 <i className="fa-solid fa-circle-plus"></i>
             </Link>
 

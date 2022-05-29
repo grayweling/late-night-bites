@@ -14,6 +14,7 @@ import Footer from './components/Footer';
 import Home from './pages/Home';
 import Login from './pages/Login';
 import NoMatch from './pages/NoMatch';
+import CreatePost from './pages/CreatePost';
 
 const httpLink = createHttpLink({
   uri: '/graphql',
@@ -43,6 +44,7 @@ function App() {
             <Routes>
               <Route path='/' element={<Home />} />
               <Route path='/login' element={<Login />} />
+              <Route path='/create-post' element={<CreatePost />} />
               <Route
                 path="*"
                 element={<NoMatch />} />
