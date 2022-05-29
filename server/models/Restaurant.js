@@ -1,4 +1,5 @@
 const { Schema, model } = require('mongoose');
+const commentSchema = require('./Comment');
 const dateFormat = require('../utils/dateformat');
 
 const restaurantSchema = new Schema(
@@ -15,6 +16,9 @@ const restaurantSchema = new Schema(
             type: String,
             required: true,
         },
+        foodType: {
+            type: String
+        },
         image: {
             //I'm not super sure how to implement an image here yet
         },
@@ -22,16 +26,24 @@ const restaurantSchema = new Schema(
             type: Number,
             required: false
         },
-        comments: [
-            //unsure what we will be putting here yet
-        ]
+        comments: [commentSchema],
+        createdAt: {
+            type: Date,
+            default: Date.now,
+            get: timestamp => dateFormat(timestamp)
+        }
     },
     {
         toJSON: {
             getters: true,
+            virtuals: true
         }
     }
-) 
+)
+
+restaurantSchema.virtual('commentCount').get(function () {
+    return this.comments.length;
+});
 
 const Restaurant = model('Restaurant', restaurantSchema);
 

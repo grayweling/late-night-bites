@@ -32,64 +32,64 @@ const resolvers = {
 
       //sort in descending order by createdAt
       return Restaurant.find(params).sort({ createdAt: -1 });
-    },
+    }
   },
   Mutation: {
-    addUser: async (parent, {args}) => {
+    addUser: async (parent, args) => {
       const user = await User.create(args);
       const token = signToken(user);
 
       return { token, user };
     },
     login: async (parent, { email, password }) => {
-        const user = await User.findOne({ email });
+      const user = await User.findOne({ email });
 
-        if (!user) {
-            throw new AuthenticationError("Incorrect login credentials");
-        }
-
-        const correctPW = await user.isCorrectPassword(password); //TODO: add method in User model
-        if (!correctPW) {
-            throw new AuthenticationError("Incorrect login credentials");
-
-        }
-
-        const token = signToken(user);
-        return {token, user};
-      },
-      addRestaurant: async (parent, args, context) => {
-          //check if user is logged in
-          if (context.user) {
-              const restaurant = await Restaurant.create({ ...args, username: context.user.username });
-
-              await User.findByAndUpdate(
-                  { _id: context.user._id },
-                  { $push: { restaurant: restaurant._id } },
-                  { new: true }
-              );
-
-              return restaurant;
-          }
-          
-          throw new AuthenticationError("You need to be logged in!")
-      },
-      addComment: async (parent, { restaurantId, commentBody }, context) => {
-          //check if user is logged in
-          if (context.user) {
-              const updatedRestaurant = await Restaurant.findOneAndUpdate(
-                  { _id: restaurantId },
-                  {
-                      $push: {
-                      comments: {commentBody, username: context.user.username}
-                      }
-                  },
-                  {new: true, runValidator: true}
-              )
-              return updatedRestaurant;
-          }
-
-          throw new AuthenticationError("You need to be logged in");
+      if (!user) {
+        throw new AuthenticationError("Incorrect login credentials");
       }
+
+      const correctPW = await user.isCorrectPassword(password); //TODO: add method in User model
+      if (!correctPW) {
+        throw new AuthenticationError("Incorrect login credentials");
+
+      }
+
+      const token = signToken(user);
+      return { token, user };
+    },
+    addRestaurant: async (parent, { content }, context) => {
+      //check if user is logged in
+      if (context.user) {
+        const restaurant = await Restaurant.create({ ...content });
+        console.log(context.user._id);
+        await User.findByIdAndUpdate(
+          { _id: context.user._id },
+          { $push: { restaurants: restaurant._id } },
+          { new: true }
+        );
+
+        return restaurant;
+      }
+
+      throw new AuthenticationError("You need to be logged in!")
+    },
+    addComment: async (parent, { restaurantId, commentBody }, context) => {
+      //check if user is logged in
+      if (context.user) {
+        const updatedRestaurant = await Restaurant.findOneAndUpdate(
+          { _id: restaurantId },
+          {
+            $push: {
+              comments: { commentBody, username: context.user.username }
+            }
+          },
+          { new: true, runValidator: true }
+        )
+        return updatedRestaurant;
+      }
+
+      throw new AuthenticationError("You need to be logged in");
+    }
   },
 };
 

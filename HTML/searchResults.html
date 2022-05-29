@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- tailwind cdn jit link -->
+    <script src="https://cdn-tailwindcss.vercel.app/?plugins=forms,typography,aspect-ratio,line-clamp"></script>
+    <!-- tailwind js link -->
+    <script src="./tailwind.config.js"></script>
+    <!-- font awesome link --> 
+    <script src="https://kit.fontawesome.com/527578a004.js" crossorigin="anonymous"></script>
+    <!-- google fonts link -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;400;500&amp;family=Poppins:wght@100;200;300;400&amp;display=swap" rel="stylesheet">
+    <!-- css link -->
+    <link rel="stylesheet" href="./assets/css/styles.css"/>
+
+    <style type="text/tailwindcss">
+
+
+      .navbar {
+        @apply flex justify-around bg-[#272522] text-center text-4xl;
+      }
+
+      
+      .nav-btn {
+        @apply w-16 h-16 rounded-full;
+      }
+
+      
+    </style>
+
+    <title></title>
+  </head>
+
+  <body class="bg-[#212121]">
+
+    <!-- Main Section -->
+    <main class="min-h-screen min-w-screen flex flex-col gap-y-8">
+ 
+  
+      <section class="profile-picture flex flex-wrap flex-grow justify-evenly bg-[#212121]"> 
+
+        <div class="">
+          <!-- Top title and image -->
+          <h1 class="mt-12 mb-4 text-[#16AC97] text-center text-5xl">Late Night Eats</h1>
+          
+          <div class="icons flex flex-col items-center">
+            <a class="flex mb-8" href="">
+                <i class="fa-solid fa-moon fa-6x text-[#BE95FA]"></i>
+                <i class="mt-4 items-center fa-solid fa-utensils fa-2xl text-[#BE95FA]"></i>
+            </a>
+          </div>
+
+          <!-- card section -->
+           <article class="flex flex-wrap basis-1/2 gap-4 justify-center">
+
+            <!-- card 1 -->
+            <div class="card-div">
+              <div class="rounded-lg shadow-lg bg-white max-w-sm">
+                <a href="#!">
+                  <img class="card-image rounded-t-lg" src="./assets/images/noodles.jpg" alt=""/>
+                </a>
+                <div class="text-center p-6">
+                  <h5 class="card-title text-[#16AC97] text-xl font-medium mb-2">
+                    Card title
+                    <button class="save">
+                      <i class="hover:text-[#BE95FA] fa-brands fa-gratipay"></i>
+                    </button>
+                  </h5>
+   
+                  <div class="text-center">
+
+                    <p class="text-xs text-black mb-2">123 DisneyLane
+                    </p>
+                    <p class="text-xs text-black">(Click below to see all comments or add your own)
+                    </p>
+
+                    <button class="editComment">
+                      <i class="mt-2 text-[#BE95FA] hover:text-[#16AC97] fa-solid fa-pen-to-square fa-2x"></i>
+                    </button>
+
+                    <div class="totalVotes flex justify-around">
+                        <i class="text-[#16AC97] fa-solid fa-thumbs-up">
+                          <p class="totalUpvotes mt-2">5</p>
+                        </i>
+                        <i class="text-[#FF0000] fa-solid fa-thumbs-down">
+                          <p class="totalDownvotes mt-2">5</p>
+                        </i>
+                    </div>
+                  </div>              
+                </div>
+              </div>
+            </div>
+
+            <!-- card 2 -->
+            <div class="card-div">
+              <div class="rounded-lg shadow-lg bg-white max-w-sm">
+                <a href="#!">
+                  <img class="card-image rounded-t-lg" src="./assets/images/noodles.jpg" alt=""/>
+                </a>
+                <div class="text-center p-6">
+                  <h5 class="card-title text-[#16AC97] text-xl font-medium mb-2">
+                    Card title
+                    <button class="save">
+                      <i class="hover:text-[#BE95FA] fa-brands fa-gratipay"></i>
+                    </button>
+                  </h5>
+   
+                  <div class="text-center">
+
+                    <p class="text-xs text-black mb-2">123 DisneyLane
+                    </p>
+                    <p class="text-xs text-black">(Click below to see all comments or add your own)
+                    </p>
+
+                    <button class="editComment">
+                      <i class="mt-2 text-[#BE95FA] hover:text-[#16AC97] fa-solid fa-pen-to-square fa-2x"></i>
+                    </button>
+
+                    <div class="totalVotes flex justify-around">
+                        <i class="text-[#16AC97] fa-solid fa-thumbs-up">
+                          <p class="totalUpvotes mt-2">5</p>
+                        </i>
+                        <i class="text-[#FF0000] fa-solid fa-thumbs-down">
+                          <p class="totalDownvotes mt-2">5</p>
+                        </i>
+                    </div>
+                  </div>              
+                </div>
+              </div>
+            </div>
+
+
+          </article>   
+      </section>
+
+      <!-- Navigation Section -->
+      <nav class="navbar nav-lg text-[#16AC97] sticky bottom-0">
+
+        <button class="nav-btn btn-hover">
+          <a href=""><i class="fa-solid fa-house-chimney"></i></a>          
+        </button>
+
+        <button class="nav-btn btn-hover">
+          <a href="">
+            <i class="fas fa-chart-bar"></i>
+          </a>
+        </button>
+
+        <button class="nav-btn btn-hover">
+          <a href=""><i class="fa-solid fa-circle-plus"></i></a>             
+        </button>
+
+        <button class="nav-btn btn-hover">
+          <a href=""><i class="fas fa-user"></i></a>            
+        </button>
+      </nav>
+
+    </main>
+  </body>
+</html>
