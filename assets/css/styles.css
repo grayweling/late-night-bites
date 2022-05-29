@@ -35,7 +35,24 @@
     background-color: var(--secondary);
     transition: all 0.6s ease-in-out;
   }
+
+  .btn-hover:hover {
+    font-weight: bold;
+    color: var(--primary);
+    background-color: white;
+    transition: all 0.6s ease-in-out;
+    opacity: 0.75;
+  }
+
+  /* For solid and non solid icons with upvote and downvote */
   
+  * > .fa-hover-show,
+  *:hover > .fa-hover-hidden {
+    display: none;
+  }
+  *:hover > .fa-hover-show {
+    display: inline-block;
+  }
   
   #email {
     color: black;
