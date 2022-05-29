@@ -25,12 +25,10 @@ const Login = () => {
         event.preventDefault();
 
         try {
-            console.log("hello");
             console.log({ formState });
             const { data } = await login({
                 variables: { ...formState },
             });
-            console.log(data);
             Auth.login(data.login.token);
             <Navigate to="/" />;
         } catch (e) {

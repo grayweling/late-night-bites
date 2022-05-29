@@ -23,3 +23,19 @@ export const ADD_USER = gql`
     }
   }
 `;
+
+export const ADD_RESTAURANT = gql`
+  mutation addRestaurant($content: RestaurantInput!) {
+    addRestaurant(content: $content) {
+        _id
+        name
+        address
+        description
+        foodType
+        comments {
+            commentBody
+            username
+        }
+    }
+  }
+`;
