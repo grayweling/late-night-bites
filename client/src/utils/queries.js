@@ -10,6 +10,7 @@ export const RESTAURANTS = gql`
     foodType
     image
     rating
+    commentCount
     comments {
         _id
         commentBody
@@ -27,6 +28,7 @@ query restaurant($id: ID!) {
       address
       description
       foodType
+      commentCount
       comments {
           commentBody
           username

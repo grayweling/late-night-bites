@@ -16,6 +16,7 @@ const typeDefs = gql`
     foodType: String
     image: String
     rating: Int
+    commentCount: Int
     comments: [Comment]
     createdAt: String
   }
