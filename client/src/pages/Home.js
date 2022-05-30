@@ -2,20 +2,22 @@ import React, { useState } from 'react';
 import { useQuery } from '@apollo/client';
 import { RESTAURANTS } from '../utils/queries';
 import RestaurantList from '../components/RestaurantList'
-
+import Auth from '../utils/auth';
 
 const Home = () => {
     const [foodType, setFoodType] = useState('');
     const { loading, data, refetch } = useQuery(RESTAURANTS);
     const [searchedRestaurants, setSearchedRestaurants] = useState([]);
     refetch();
+    
     const handleChange = (event) => {
 
       setFoodType(event.target.value);
             
     };
-
+    console.log(Auth);
     const formSubmit = async (event) => {
+        
         event.preventDefault();
         if (loading) {
             return <h1>Loading...</h1>;

@@ -13,6 +13,7 @@ import Footer from './components/Footer';
 
 import Home from './pages/Home';
 import Login from './pages/Login';
+import Signup from './pages/Signup';
 import NoMatch from './pages/NoMatch';
 import CreatePost from './pages/CreatePost';
 import SinglePost from './pages/SinglePost';
@@ -45,6 +46,7 @@ function App() {
             <Routes>
               <Route path='/' element={<Home />} />
               <Route path='/login' element={<Login />} />
+              <Route path='/signup' element={<Signup />} />
               <Route path='/create-post' element={<CreatePost />} />
               <Route path='/post/:id' element={<SinglePost />} />
               <Route

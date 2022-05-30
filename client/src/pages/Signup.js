@@ -1,14 +1,13 @@
 import React, { useState } from 'react';
 import { useMutation } from '@apollo/client';
-import { LOGIN } from '../utils/mutations';
+import { ADD_USER } from '../utils/mutations';
 import { useNavigate } from "react-router-dom";
-
 
 import Auth from '../utils/auth';
 
-const Login = () => {
-    const [formState, setFormState] = useState({ email: '', password: '' });
-    const [login, { error }] = useMutation(LOGIN);
+const Signup = () => {
+    const [formState, setFormState] = useState({ username: '', email: '', password: '' });
+    const [addUser] = useMutation(ADD_USER);
     let navigate = useNavigate();
     // update state based on form input changes
     const handleChange = (event) => {
@@ -23,29 +22,27 @@ const Login = () => {
     // submit form
     const handleFormSubmit = async (event) => {
         event.preventDefault();
-
         try {
             console.log({ formState });
-            const { data } = await login({
+            const { data } = await addUser({
                 variables: { ...formState },
             });
-            Auth.login(data.login.token);
+
+            Auth.login(data.addUser.token);
             navigate("/");
+
         } catch (e) {
             console.error(e);
         }
 
         // clear form values
-        setFormState({
-            email: '',
-            password: '',
-        });
+        // setFormState({
+        //     username:'',
+        //     email: '',
+        //     password: ''
+        // });
     };
-    const routeChange = () =>{ 
-        let path = `/signup`; 
-        navigate(path);
-    }
-
+   
     return (
         <main className="min-h-screen min-w-screen flex flex-col gap-y-8">
 
@@ -59,11 +56,22 @@ const Login = () => {
                             <i className="fa-solid fa-moon fa-6x text-[#BE95FA]"></i>
                             <i className="mt-4 items-center fa-solid fa-utensils fa-2xl text-[#BE95FA]"></i>
                         </span>
-                        {/* <!-- Login page --> */}
+                        {/* <!-- Signup page --> */}
                         <div className="self-center mx-auto">
                             <div
                                 className="bg-white border-gray-200 rounded-lg p-4 sm:p-6 lg:p-8 dark:bg-gray-800 dark:border-gray-700">
                                 <form className="space-y-12" action="#" onSubmit={handleFormSubmit}>
+                                    <div>
+                                        <label htmlFor="username" className="text-sm font-medium text-gray-900 block mb-2 dark:text-gray-300">Your username</label>
+                                        <input
+                                            type="username"
+                                            name="username"
+                                            id="username"
+                                            className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" placeholder="name@mail.com"
+                                            required=""
+                                            value={formState.username}
+                                            onChange={handleChange} />
+                                    </div>
                                     <div>
                                         <label htmlFor="email" className="text-sm font-medium text-gray-900 block mb-2 dark:text-gray-300">Your email</label>
                                         <input
@@ -90,28 +98,17 @@ const Login = () => {
 
                                     <div className="">
                                         <div className="mb-8">
-                                            <button type="submit" className="w-full text-white bg-[#BE95FA]  focus:ring-1 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">Login to your account</button>
+                                            <button type="submit" className="w-full text-white bg-[#BE95FA]  focus:ring-1 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">Create Account</button>
                                         </div>
-
-                                        {/* <div>
-                                            <button type="submit" className="w-full text-white bg-white bg-[#16AC97] focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">Not Registered? Create account</button>
-                                        </div> */}
                                     </div>
                                 </form>
-
-                                <div>
-                                    <button onClick={routeChange} className="w-full text-white bg-white bg-[#16AC97] focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">Not Registered? Create account</button>
-                                </div>
-                                {error && <div className='ftblk'>Login failed</div>}
-
                             </div>
                         </div>
                     </div>
-                    {/* <h1 className="text-xl text-center">(In order to post, like or comment. Please sign in or register a new account.)</h1> */}
                 </div>
             </section>
         </main>
     );
 };
 
-export default Login;
+export default Signup;

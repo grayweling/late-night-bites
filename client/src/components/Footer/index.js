@@ -9,8 +9,9 @@ const Footer = () => {
     //     event.preventDefault();
     //     Auth.logout();
     // };
-
+   
     return (
+        
         <nav className="navbar nav-lg text-[#16AC97]">
 
             <Link to="/">
