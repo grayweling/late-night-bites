@@ -26,7 +26,7 @@ const Footer = () => {
                     <i className="fa-solid fa-circle-plus"></i>
                 </Link>
                 <Link to="/" onClick={Auth.logout}>
-                    <i class=" fa-solid fa-arrow-right-from-bracket"></i>
+                    <i className=" fa-solid fa-arrow-right-from-bracket"></i>
                 </Link>
             </>
             ) : (
