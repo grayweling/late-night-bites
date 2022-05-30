@@ -10,8 +10,9 @@ const RestaurantList = ({restaurants}) => {
     <div className="flex flex-wrap basis-1/2 gap-4 justify-center">
         {restaurants && restaurants.map(restaurant => (
             <div className="card-div" key={restaurant._id}>
+              <Link to={`/post/${restaurant._id}`}>
             <div className="rounded-lg shadow-lg bg-white max-w-sm">
-              <span href="#!">
+              <span >
                 <img className="card-image rounded-t-lg" src="" alt=""/>
               </span>
               <div className="text-center p-6">
@@ -21,12 +22,14 @@ const RestaurantList = ({restaurants}) => {
  
                 <div className="text-center">
 
-                  <p className="text-xs text-black mb-2">{restaurant.address}
+                  <p className="text-xs text-black mb-2">address: {restaurant.address}
                   </p>
-                  <p className="text-xs text-black">(Click below to see all comments or add your own)
+                  <p className="text-xs text-black mb-2">food type: {restaurant.foodType}
+                  </p>
+                  <p className="text-xs text-black">comments: {restaurant.comments.length} 
                   </p>
 
-                  <button className="editComment">
+                  {/* <button className="editComment">
                     <i className="mt-2 text-[#BE95FA] hover:text-[#16AC97] fa-solid fa-pen-to-square fa-2x"></i>
                   </button>
 
@@ -34,29 +37,15 @@ const RestaurantList = ({restaurants}) => {
 
                     <div>
                       <h1 className="text-black upvote-number">500</h1>
-                        <button>
-                            <a href="#">
-                              <i className="upvotes text-[#16AC97] fa-2x fa-regular fa-thumbs-up fa-hover-hidden"></i>
-                              <i className="upvotes-solid text-[#16AC97] fa-2x fa-solid fa-thumbs-up fa-hover-show"></i>
-                            </a>
-                        </button>
-                    </div>
-                      
-                      <div>
-                        <h1 className="text-black downvote-number">40</h1>
-                          <button> 
-                              <a href="#">
-                                <i className="downvotes text-[#FF0000] fa-2x fa-regular fa-thumbs-down fa-hover-hidden"></i>
-                                <i className="downvotes-solid text-[#FF0000] fa-2x fa-solid fa-thumbs-down fa-hover-show"></i>
-                              </a>
-                          </button>
+                        
                       </div>
-                  </div>
+                  </div> */}
 
                 </div>   
                            
               </div>
             </div>
+            </Link>
           </div>))}
         </div>
         

@@ -51,6 +51,7 @@ const typeDefs = gql`
       addUser(username: String!, email: String!, password: String!): Auth
       addRestaurant(content: RestaurantInput): Restaurant
       addComment(restaurantId: ID!, commentBody: String): Restaurant
+      deleteRestaurants: Restaurant
   }
 `;
 

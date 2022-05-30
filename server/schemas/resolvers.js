@@ -89,6 +89,9 @@ const resolvers = {
       }
 
       throw new AuthenticationError("You need to be logged in");
+    },
+    deleteRestaurants: async () => {
+      return Restaurant.deleteMany({})
     }
   },
 };

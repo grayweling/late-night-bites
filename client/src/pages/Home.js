@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState } from 'react';
 import { useQuery } from '@apollo/client';
 import { RESTAURANTS } from '../utils/queries';
 import RestaurantList from '../components/RestaurantList'
@@ -6,20 +6,9 @@ import RestaurantList from '../components/RestaurantList'
 
 const Home = () => {
     const [foodType, setFoodType] = useState('');
-    const [food, setFood] = useState('');
-    const [printResults, setPrintResults] = useState(false);
-    const myValue = useRef('');
-    const { loading, data } = useQuery(RESTAURANTS)
+    const { loading, data, refetch } = useQuery(RESTAURANTS);
     const [searchedRestaurants, setSearchedRestaurants] = useState([]);
-    var restaurants = data?.restaurants || [];
-
-
-    // useEffect(() => {
-    //     console.log(food)}, [food]);
-    
-    //     useEffect(() => {
-    //         console.log(foodType)}, [foodType]);
-
+    refetch();
     const handleChange = (event) => {
 
       setFoodType(event.target.value);
@@ -28,18 +17,17 @@ const Home = () => {
 
     const formSubmit = async (event) => {
         event.preventDefault();
+        if (loading) {
+            return <h1>Loading...</h1>;
+          }
+          refetch();
+        var restaurants = data.restaurants;
 
-       
-        event.preventDefault();
-        if (restaurants.length) {
+        if (foodType) {
             restaurants = restaurants.filter (restaurant => restaurant.foodType === foodType);
-            setSearchedRestaurants(restaurants);
         }
+        setSearchedRestaurants(restaurants);
         setFoodType('');
-        
-       
-
-        
         
     };
     return (
@@ -65,11 +53,23 @@ const Home = () => {
                         onChange={handleChange} 
                         >
                             <option value="">Find By Food Type</option>
-                            <option value="tacos">Tacos</option>
-                            <option value="burgers">Burgers</option>
-                            <option value="mexican">Mexican</option>
-                            <option value="sushi">Sushi</option>
-                            <option value="vegetarian">Vegetarian</option>
+                            <option value="American">American</option>
+                            <option value="Barbeque">Barbeque</option>
+                            <option value="Chinese">Chinese</option>
+                            <option value="French">French</option>
+                            <option value="Burgers">Burgers</option>
+                            <option value="Indian">Indian</option>
+                            <option value="Italian">Italian</option>
+                            <option value="Japanese">Japanese</option>
+                            <option value="Mexican">Mexican</option>
+                            <option value="Pizza">Pizza</option>
+                            <option value="Seafood">Seafood</option>
+                            <option value="Steak">Steak</option>
+                            <option value="Sushi">Sushi</option>
+                            <option value="Thai">Thai</option>
+                            <option value="Mediterranean">Mediterranean</option>
+                            <option value="Vietnamese">Vietnamese</option>
+                            <option value="Vegetarian">Vegetarian</option>
 
                         </select>
                     </div>
