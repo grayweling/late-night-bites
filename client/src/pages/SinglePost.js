@@ -5,6 +5,7 @@ import { useQuery, useMutation } from '@apollo/client';
 import { GET_RESTAURANT } from '../utils/queries';
 import Auth from '../utils/auth';
 import CommentList from '../components/CommentList';
+import CommentForm from '../components/CommentForm';
 
 const SinglePost = (props) => {
   const { id: restaurantId } = useParams();
@@ -69,6 +70,8 @@ const SinglePost = (props) => {
                     {restaurant.description}
                   </h2>
                 </div>
+                {/* COMMENT FORM HERE */}
+                
                 {/* {restaurant.commentCount > 0 && <CommentList comments={restaurant.comments} />} */}
                 <CommentList comments={restaurant.comments} />
               </div>

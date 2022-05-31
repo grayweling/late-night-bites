@@ -17,7 +17,7 @@
     "develop": "concurrently \"cd server && npm run watch\" \"cd client && npm start\"",
     "install": "cd server && npm i && cd ../client && npm i",
     "seed": "cd server && npm run seed",
-    "build": "react-scripts build",
+    "build": "cd client && react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
