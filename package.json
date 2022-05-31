@@ -1,15 +1,17 @@
 {
   "name": "late-night-bites",
   "version": "0.1.0",
-  "private": true,
+  "main": "server/server.js",
   "dependencies": {
+    "@apollo/client": "^3.6.5",
     "@testing-library/jest-dom": "^5.16.4",
     "@testing-library/react": "^13.2.0",
     "@testing-library/user-event": "^13.5.0",
-    "dotenv": "^16.0.1",
+    "graphql": "^16.5.0",
+    "jwt-decode": "^3.1.2",
     "react": "^18.1.0",
     "react-dom": "^18.1.0",
-    "react-scripts": "5.0.1",
+    "react-router-dom": "^6.3.0",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
@@ -17,29 +19,10 @@
     "develop": "concurrently \"cd server && npm run watch\" \"cd client && npm start\"",
     "install": "cd server && npm i && cd ../client && npm i",
     "seed": "cd server && npm run seed",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
-  },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
-  },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
+    "build": "cd client && react-scripts build"
   },
   "devDependencies": {
-    "concurrently": "^7.2.1"
+    "concurrently": "^5.1.0",
+    "react-scripts": "^5.0.1"
   }
 }
