@@ -17,8 +17,13 @@ import Signup from './pages/Signup';
 import NoMatch from './pages/NoMatch';
 import CreatePost from './pages/CreatePost';
 import SinglePost from './pages/SinglePost';
+import {createUpLoadLink} from 'apollo-upload-client';
 
-const httpLink = createHttpLink({
+// const httpLink = createHttpLink({
+//   uri: '/graphql',
+// });
+
+const uploadLink = createUploadLink({
   uri: '/graphql',
 });
 
@@ -33,7 +38,7 @@ const authLink = setContext((_, { headers }) => {
 });
 
 const client = new ApolloClient({
-  link: authLink.concat(httpLink),
+  link: authLink.concat(uploadLink),
   cache: new InMemoryCache(),
 });
 

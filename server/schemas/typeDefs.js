@@ -1,6 +1,14 @@
 const { gql } = require("apollo-server-express");
 
 const typeDefs = gql`
+  scalar Upload
+
+  type File {
+        filename: String!
+        mimetype: String!
+        encoding: String!
+      }
+
   type User {
     _id: ID
     username: String
@@ -47,6 +55,7 @@ const typeDefs = gql`
       restaurant(_id: ID!): Restaurant
   }
   type Mutation {
+      uploadFile(file: Upload!): File!
       login(email: String!, password: String!): Auth
       addUser(username: String!, email: String!, password: String!): Auth
       addRestaurant(content: RestaurantInput): Restaurant
