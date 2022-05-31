@@ -30,6 +30,7 @@ query restaurant($id: ID!) {
       foodType
       commentCount
       comments {
+        _id
           commentBody
           username
       }

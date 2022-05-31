@@ -2,16 +2,22 @@ import React, { useState } from 'react';
 import { useMutation } from '@apollo/client';
 import { ADD_COMMENT } from '../../utils/mutations';
 
-const ThoughtForm = () => {
-    const [commentBody, setText] = useState('');
-    const [addComment, { error }] = useMutation(ADD_COMMENT);
+const CommentForm = ({ restaurantId }) => {
+  console.log(restaurantId)
+  const [commentBody, setText] = useState('');
+  
+  const [addComment, { error }] = useMutation(ADD_COMMENT);
+
+  const handleChange = (event) => {
+      setText(event.target.value);
+  }
 
     const handleFormSubmit = async event => {
         event.preventDefault();
 
         try {
             await addComment({
-                variables: { commentBody }
+                variables: { commentBody, restaurantId }
             });
 
             setText('');
@@ -27,6 +33,8 @@ const ThoughtForm = () => {
       <form className="flex flex-col m-2" onSubmit={handleFormSubmit}>
         <textarea
           placeholder="Add a new comment!"
+          value={commentBody}
+          onChange={handleChange}
           className="form-input text-[#BE95FA]"
         ></textarea>
         <button className="btn text-[#BE95FA]" type="submit">
@@ -37,4 +45,4 @@ const ThoughtForm = () => {
   );
 };
 
-export default ThoughtForm;
+export default CommentForm;

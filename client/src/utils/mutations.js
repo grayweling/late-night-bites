@@ -41,10 +41,15 @@ export const ADD_RESTAURANT = gql`
 `;
 
 export const ADD_COMMENT = gql`
-  mutation addComment($commentBody: String!) {
-    addComment(commentBody: $commentBody) {
+  mutation addComment($commentBody: String!, $restaurantId: ID!) {
+    addComment(commentBody: $commentBody, restaurantId: $restaurantId) {
       _id
-      comments {...}
+      comments {
+        _id
+        commentBody
+        createdAt
+        username
+      }
       name
       createdAt
     }
