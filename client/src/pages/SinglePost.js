@@ -71,7 +71,8 @@ const SinglePost = (props) => {
                   </h2>
                 </div>
                 {/* COMMENT FORM HERE */}
-                
+                {Auth.loggedIn() && <CommentForm />}
+
                 {/* {restaurant.commentCount > 0 && <CommentList comments={restaurant.comments} />} */}
                 <CommentList comments={restaurant.comments} />
               </div>

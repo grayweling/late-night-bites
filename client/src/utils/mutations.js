@@ -39,3 +39,14 @@ export const ADD_RESTAURANT = gql`
     }
   }
 `;
+
+export const ADD_COMMENT = gql`
+  mutation addComment($commentBody: String!) {
+    addComment(commentBody: $commentBody) {
+      _id
+      commentBody
+      username
+      createdAt
+    }
+  }
+`;
