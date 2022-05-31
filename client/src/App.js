@@ -18,10 +18,15 @@ import NoMatch from './pages/NoMatch';
 import CreatePost from './pages/CreatePost';
 import SinglePost from './pages/SinglePost';
 
-const httpLink = createHttpLink({
+import {createUploadLink} from 'apollo-upload-client';
+
+// const httpLink = createHttpLink({
+//   uri: '/graphql',
+// });
+
+const uploadLink = createUploadLink({
   uri: '/graphql',
 });
-
 const authLink = setContext((_, { headers }) => {
   const token = localStorage.getItem('id_token');
   return {
@@ -33,7 +38,7 @@ const authLink = setContext((_, { headers }) => {
 });
 
 const client = new ApolloClient({
-  link: authLink.concat(httpLink),
+  link: authLink.concat(uploadLink),
   cache: new InMemoryCache(),
 });
 

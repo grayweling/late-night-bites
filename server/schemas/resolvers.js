@@ -1,6 +1,8 @@
 const { User, Restaurant } = require("../models");
 const { AuthenticationError } = require("apollo-server-express");
 const { signToken } = require("../utils/auth");
+const path = require('path');
+const fs = require('fs');
 
 const resolvers = {
   Query: {
@@ -92,8 +94,23 @@ const resolvers = {
     },
     deleteRestaurants: async () => {
       return Restaurant.deleteMany({})
-    }
-  },
+    },
+    singleUpload: async (parent, { file }) => {
+        const { createReadStream, filename, mimetype, encoding } = await file;
+        // Invoking the `createReadStream` will return a Readable Stream.
+        // See https://nodejs.org/api/stream.html#stream_readable_streams
+        const stream = createReadStream();
+        // This is purely for demonstration purposes and will overwrite the
+        // local-file-output.txt in the current working directory on EACH upload.
+        const pathName = path.join(__dirname, `../public/images/${filename}`)
+
+        const out = require('fs').createWriteStream('local-file-output.txt');
+        await stream.pipe(fs.createWriteStream(pathName));
+        return { 
+          url: `http://localhost:3001/images/${filename}` 
+        };
+      },
+    },
 };
 
 module.exports = resolvers;
