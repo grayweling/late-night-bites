@@ -68,7 +68,7 @@ const CreatePost = () => {
                             <input name="address" id="address" type="text"  onChange={handleChange} value={userFormData.address} placeholder="Enter the address" className="rounded-full text-center w-full mb-8 text-black" />
 
                             <h3 className="text-center">Description</h3>
-                            <input name="description" id="description" type="text" onChange={handleChange} value={userFormData.description}  placeholder="Describe the place" className="rounded-full text-center w-full mb-8 text-black" />
+                            <input name="description" id="description" maxlength="95" type="text" onChange={handleChange} value={userFormData.description}  placeholder="Describe the place" className="rounded-full text-center w-full mb-8 text-black" />
 
                             <h3 className="text-center">Food Type</h3>
                             <select name="foodType" id="foodType" type="text" onChange={handleChange} value={userFormData.foodType}  placeholder="Enter type of food" className="rounded-full text-center w-full mb-4 text-black" >

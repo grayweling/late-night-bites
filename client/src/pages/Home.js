@@ -86,7 +86,7 @@ const Home = () => {
                 </div>
                 
             </section>
-            {searchedRestaurants.length && <RestaurantList restaurants={searchedRestaurants}/>}
+            {<RestaurantList restaurants={searchedRestaurants}/>}
         </main >
     );
 };
