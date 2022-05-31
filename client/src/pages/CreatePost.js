@@ -48,7 +48,7 @@ const CreatePost = () => {
         <main className="min-h-screen min-w-screen flex flex-col text-[#BE95FA]">
 
 
-            <section className="flex flex-wrap flex-grow justify-center bg-[#212121]">
+            <section className="text-center flex flex-wrap flex-grow justify-center bg-[#212121]">
                 <div className="flex flex-col items-center gap-2">
 
                     <h1 className="mt-6 text-[#16AC97] text-center text-3xl">Late Night Eats</h1>
