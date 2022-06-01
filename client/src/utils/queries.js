@@ -8,7 +8,7 @@ export const RESTAURANTS = gql`
     address
     description
     foodType
-    image
+    userId
     rating
     comments {
         _id
@@ -27,10 +27,24 @@ query restaurant($id: ID!) {
       address
       description
       foodType
+      userId
       comments {
           commentBody
           username
       }
   }
+}
+`;
+
+export const GET_ME = gql`  
+{
+  me {
+      _id
+      username
+      email
+      restaurants {
+        _id
+      }
+}
 }
 `;

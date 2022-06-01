@@ -1,6 +1,7 @@
 const { User, Restaurant } = require("../models");
 const { AuthenticationError } = require("apollo-server-express");
 const { signToken } = require("../utils/auth");
+const { Types } = require('mongoose');
 
 const resolvers = {
   Query: {
@@ -60,7 +61,9 @@ const resolvers = {
     addRestaurant: async (parent, { content }, context) => {
       //check if user is logged in
       if (context.user) {
-        const restaurant = await Restaurant.create({ ...content });
+       content.userId= context.user._id;
+        console.log("new:", content);
+        const restaurant = await Restaurant.create(content);
         console.log(context.user._id);
         await User.findByIdAndUpdate(
           { _id: context.user._id },
@@ -92,6 +95,15 @@ const resolvers = {
     },
     deleteRestaurants: async () => {
       return Restaurant.deleteMany({})
+    },
+    deleteRestaurant: async (parent, {restId}, context) => {
+      if (context.user) {
+        console.log("Rest2:", restId);
+        return Restaurant.findByIdAndRemove(
+          {_id: restId}
+        )
+      }
+      throw new AuthenticationError("You cannot delete a comment that is not yours");
     }
   },
 };

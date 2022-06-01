@@ -14,12 +14,13 @@ const typeDefs = gql`
     address: String
     description: String
     foodType: String
-    image: String
+    userId: String
     rating: Int
+    commentCount: Int
     comments: [Comment]
     createdAt: String
+    
   }
-
   type Comment {
     _id: ID
     commentBody: String
@@ -30,15 +31,13 @@ const typeDefs = gql`
       token: ID!
       user: User
   }
-
   input RestaurantInput {
     name: String
     address: String
     description: String
     foodType: String
-    image: String
+    userId: String
   }
-
   type Query {
       me: User
       users: [User]
@@ -52,6 +51,7 @@ const typeDefs = gql`
       addRestaurant(content: RestaurantInput): Restaurant
       addComment(restaurantId: ID!, commentBody: String): Restaurant
       deleteRestaurants: Restaurant
+      deleteRestaurant(restId: ID): Restaurant
   }
 `;
 

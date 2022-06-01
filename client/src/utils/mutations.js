@@ -32,10 +32,35 @@ export const ADD_RESTAURANT = gql`
         address
         description
         foodType
+        userId
         comments {
             commentBody
             username
         }
+    }
+  }
+`;
+
+export const DELETE_RESTAURANT = gql`
+  mutation deleteRestaurant($restId: ID) {
+    deleteRestaurant(restId: $restId){
+      _id
+    }
+  }
+`;
+
+export const ADD_COMMENT = gql`
+  mutation addComment($commentBody: String!, $restaurantId: ID!) {
+    addComment(commentBody: $commentBody, restaurantId: $restaurantId) {
+      _id
+      comments {
+        _id
+        commentBody
+        createdAt
+        username
+      }
+      name
+      createdAt
     }
   }
 `;

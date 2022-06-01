@@ -1,12 +1,18 @@
 import React, { useState } from 'react';
-import { useMutation } from '@apollo/client';
+import { useQuery, useMutation } from '@apollo/client';
 import { ADD_RESTAURANT } from '../utils/mutations';
 import { useNavigate } from 'react-router-dom';
+import { GET_ME } from '../utils/queries';
 
 const CreatePost = () => {
     const [userFormData, setUserFormData] = useState({ name: '', address: '', description: '', foodType: '' });
     const navigate = useNavigate();
     const [addRestaurant] = useMutation(ADD_RESTAURANT);
+    const {data: dataMe } = useQuery(GET_ME);
+
+    const me = dataMe?.me.email || {};
+
+    console.log("Me:", me);
 
     const handleChange = (event) => {
         const { name, value } = event.target;
