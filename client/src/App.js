@@ -26,9 +26,9 @@ import {createUploadLink} from 'apollo-upload-client';
 // });
 
 const uploadLink = createUploadLink({
-  uri: 'http://localhost:3001/',
+  uri: 'http://localhost:3001/graphql',
   // uri: process.env.REACT_APP_GRAPHQL_URL,
-  // uri: '/graphql',
+  // uri: '/graphql'
 });
 const authLink = setContext((_, { headers }) => {
 
@@ -36,14 +36,15 @@ const authLink = setContext((_, { headers }) => {
   return {
     headers: {
       ...headers,
-      'Apollo-Require-Preflight': 'true',
-      authorization: token ? `Bearer ${token}` : ''
+      authorization: token ? `Bearer ${token}` : '',
+      'Apollo-Require-Preflight': 'true'
     },
   };
 });
 
 const client = new ApolloClient({
   // link: authLink.concat(uploadLink),
+  // link: uploadLink,
   link: ApolloLink.from([ authLink, uploadLink ]),
   cache: new InMemoryCache(),
 });

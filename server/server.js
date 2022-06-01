@@ -5,6 +5,9 @@ const { typeDefs, resolvers } = require("./schemas");
 const { authMiddleware } = require("./utils/auth");
 const db = require("./config/connection");
 const cors = require('cors');
+const {
+  graphqlUploadExpress
+} = require('graphql-upload');
 
 const PORT = process.env.PORT || 3001;
 //create new Apollo server and pass in schema data
@@ -18,13 +21,17 @@ const app = express();
 
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
-
+app.use(cors());
+  app.use(express.static('./public/images'));
+  app.use(graphqlUploadExpress());
 // app.use(cors);
 
 // Serve up static assets
-if (process.env.NODE_ENV === 'production') {
-  app.use(express.static(path.join(__dirname, '../client/build')));
-}
+// if (process.env.NODE_ENV === 'production') {
+//   app.use(express.static(path.join(__dirname, '../client/build')));
+// } 
+
+
 
 app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, '../client/build/index.html'));
@@ -37,7 +44,7 @@ const startApolloServer = async (typeDefs, resolvers) => {
   //integrate apollo server with the Express application as middleware
   
   server.applyMiddleware({ app });
-  app.use(cors());
+  
  
 
   db.once("open", () => {

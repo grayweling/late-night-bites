@@ -21,8 +21,9 @@ const CreatePost = () => {
         });
     };
 
-    const handleUpload = async (event) => {
+    const handleUpload = (event) => {
         const file = event.target.files[0];
+        console.log("file:", {file});
         if(!file) return;
         uploadFile({variables: {file}})
     }

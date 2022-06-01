@@ -4,6 +4,7 @@ const { signToken } = require("../utils/auth");
 const path = require('path');
 const fs = require('fs');
 
+
 const resolvers = {
   Query: {
     me: async (parent, args, context) => {
@@ -97,18 +98,24 @@ const resolvers = {
     },
     uploadFile: async (parent, { file }) => {
         const { createReadStream, filename, mimetype, encoding } = await file;
+        console.log("two:", filename);
         // Invoking the `createReadStream` will return a Readable Stream.
         // See https://nodejs.org/api/stream.html#stream_readable_streams
         const stream = createReadStream();
+        
         // This is purely for demonstration purposes and will overwrite the
         // local-file-output.txt in the current working directory on EACH upload.
         const pathName = path.join(__dirname, `../public/images/${filename}`)
-
+        // const out = require('fs').createWriteStream(pathName);
+        // stream.pipe(out);
+        // await finished(out);
+        
         // const out = require('fs').createWriteStream('local-file-output.txt');
         await stream.pipe(fs.createWriteStream(pathName));
         return { 
           url: `http://localhost:3001/images/${filename}` 
         };
+        // return { filename, mimetype, encoding };
       },
     },
 };

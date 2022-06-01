@@ -1,13 +1,12 @@
 const { gql } = require("apollo-server-express");
 
+  
 const typeDefs = gql`
 
   scalar Upload
 
   type File {
-        filename: String!
-        mimetype: String!
-        encoding: String!
+        url: String!
       }
 
   type User {
@@ -61,7 +60,7 @@ const typeDefs = gql`
       addRestaurant(content: RestaurantInput): Restaurant
       addComment(restaurantId: ID!, commentBody: String): Restaurant
       deleteRestaurants: Restaurant
-      uploadFile(file: Upload): File
+      uploadFile(file: Upload!): File!
   }
 `;
 
