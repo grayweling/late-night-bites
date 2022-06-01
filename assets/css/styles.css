@@ -1,0 +1,64 @@
+:root {
+    --primary: #BE95FA;
+    --secondary: #16AC97;
+  }
+  
+  
+  body {
+    font-family: "Montserrat", sans-serif;
+    color: white;
+  }
+  
+  .scroll {
+    overflow: auto;
+  }
+  
+  /* no click event for child elements */
+  .no-pointer {
+    pointer-events: none;
+  }
+  
+  
+  /* Navigation Styling */
+
+  .btn-hover:hover {
+    font-weight: bold;
+    color: var(--primary);
+    background-color: white;
+    transition: all 0.6s ease-in-out;
+    opacity: 0.75;
+  }
+  
+  .btn-hover:not(:hover) {
+    font-weight: bold;
+    color: white;
+    background-color: var(--secondary);
+    transition: all 0.6s ease-in-out;
+  }
+
+  .btn-hover:hover {
+    font-weight: bold;
+    color: var(--primary);
+    background-color: white;
+    transition: all 0.6s ease-in-out;
+    opacity: 0.75;
+  }
+
+  /* For solid and non solid icons with upvote and downvote */
+  
+  * > .fa-hover-show,
+  *:hover > .fa-hover-hidden {
+    display: none;
+  }
+  *:hover > .fa-hover-show {
+    display: inline-block;
+  }
+  
+  #email {
+    color: black;
+  }
+  
+  #password {
+    color: black;
+  }
+  

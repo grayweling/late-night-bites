@@ -12,7 +12,7 @@ const Footer = () => {
    
     return (
         
-        <nav className="navbar nav-lg text-[#16AC97]">
+        <nav className="navbar nav-lg text-[#16AC97] sticky bottom-0">
 
             <Link to="/">
                 <i className="fa-solid fa-house-chimney"></i>

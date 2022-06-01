@@ -7,45 +7,32 @@ const RestaurantList = ({restaurants}) => {
     // const restaurants = {...searchedRestaurants};
     // console.log(restaurants[1]);
    return (
-    <div className="flex flex-wrap basis-1/2 gap-4 justify-center">
+    <div className="flex justify-center items-center flex-wrap">
         {restaurants && restaurants.map(restaurant => (
-            <div className="card-div" key={restaurant._id}>
+            <div className="card-div m-4" key={restaurant._id}>
               <Link to={`/post/${restaurant._id}`}>
-            <div className="rounded-lg shadow-lg bg-white max-w-sm">
-              <span >
-                <img className="card-image rounded-t-lg" src="" alt=""/>
-              </span>
+            <div className="w-80 h-64 rounded-lg shadow-lg bg-white max-w-sm">
+            <span class="flex justify-center">
+              <img className="mt-4 text-center self-center w-14 h-14" src="https://d27jswm5an3efw.cloudfront.net/app/uploads/2019/07/insert-image-html-3-768x510.jpg" alt=""/>
+            </span>
               
-              <div className="text-center p-6">
-                <h5 className="card-title text-[#16AC97] text-xl font-medium mb-2">
-                  {restaurant.name}
-                </h5>
+              <div className="text-center px-2 pt-2 card-title text-[#16AC97] text-xl font-medium mb-2">
+                    {restaurant.name}
+              </div>
  
-                <div className="text-center">
+              <div className="text-center text-xs text-black mb-2">
+                    <p className="">address: {restaurant.address}
+                    </p>
+                    <p className="">food type: {restaurant.foodType}
+                    </p>
+              </div>
 
-                  <p className="text-xs text-black mb-2">address: {restaurant.address}
-                  </p>
-                  <p className="text-xs text-black mb-2">food type: {restaurant.foodType}
-                  </p>
-                  <p className="text-xs text-black">comments: {restaurant.comments.length} 
-                  </p>
-
-                  {/* <button className="editComment">
-                    <i className="mt-2 text-[#BE95FA] hover:text-[#16AC97] fa-solid fa-pen-to-square fa-2x"></i>
-                  </button>
-
-                  <div className="totalVotes flex justify-around">
-
-                    <div>
-                      <h1 className="text-black upvote-number">500</h1>
-                        
-                      </div>
-                  </div> */}
-
-                </div>   
+              <div class="text-center">
+                <p class="text-black self-center flex-shrink text-sm">comment:<br></br>{restaurant.comments.length}
+                </p>
+              </div>
                            
               </div>
-            </div>
             </Link>
           </div>))}
         </div>
