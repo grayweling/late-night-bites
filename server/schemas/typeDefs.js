@@ -14,12 +14,11 @@ const typeDefs = gql`
     address: String
     description: String
     foodType: String
-    image: String
     rating: Int
     commentCount: Int
     comments: [Comment]
     createdAt: String
-    username: String
+    userId: String
   }
 
   type Comment {
@@ -38,7 +37,7 @@ const typeDefs = gql`
     address: String
     description: String
     foodType: String
-    image: String
+    userId: String
   }
 
   type Query {

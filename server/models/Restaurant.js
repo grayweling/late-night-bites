@@ -19,8 +19,8 @@ const restaurantSchema = new Schema(
         foodType: {
             type: String
         },
-        image: {
-            //I'm not super sure how to implement an image here yet
+        userId: {
+            type: String
         },
         rating: {
             type: Number,
