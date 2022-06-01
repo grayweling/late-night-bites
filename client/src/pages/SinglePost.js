@@ -6,6 +6,7 @@ import { GET_RESTAURANT } from '../utils/queries';
 import Auth from '../utils/auth';
 import CommentList from '../components/CommentList';
 import CommentForm from '../components/CommentForm';
+import DeleteRestaurant from '../components/DeleteRestaurantBtn';
 
 const SinglePost = (props) => {
   const { id: restaurantId } = useParams();
@@ -51,6 +52,9 @@ const SinglePost = (props) => {
                   />
                 </span>
                 <div className="text-center p-6">
+                  {/* IF YOUR RESTAURANT, DELETE BTN HERE */}
+                  <DeleteRestaurant />
+
                   {/* Food place name and like button */}
                   <h5 className="location-name card-title text-[#16AC97] text-xl font-medium mb-2">
                     {restaurant.name}

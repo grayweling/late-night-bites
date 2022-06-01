@@ -19,6 +19,7 @@ const typeDefs = gql`
     commentCount: Int
     comments: [Comment]
     createdAt: String
+    username: String
   }
 
   type Comment {
@@ -53,6 +54,7 @@ const typeDefs = gql`
       addRestaurant(content: RestaurantInput): Restaurant
       addComment(restaurantId: ID!, commentBody: String): Restaurant
       deleteRestaurants: Restaurant
+      deleteRestaurant(restaurantId: ID!, userId: ID!): Restaurant
   }
 `;
 
