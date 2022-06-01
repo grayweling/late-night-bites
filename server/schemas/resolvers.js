@@ -93,8 +93,8 @@ const resolvers = {
     deleteRestaurants: async () => {
       return Restaurant.deleteMany({})
     },
-    deleteRestaurant: async (parent, { restaurantId, userId }, context) => {
-      if (context.user._id === userId) {
+    deleteRestaurant: async (parent, { restaurantId }, context) => {
+      if (context.user) {
         return Restaurant.findOneAndDelete(
           {restaurantId: restaurantId}
         )

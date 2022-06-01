@@ -53,7 +53,9 @@ const SinglePost = (props) => {
                 </span>
                 <div className="text-center p-6">
                   {/* IF YOUR RESTAURANT, DELETE BTN HERE */}
-                  <DeleteRestaurant />
+                  {Auth.loggedIn() && (
+                    <DeleteRestaurant restaurantId={restaurant._id}/>
+                  )}
 
                   {/* Food place name and like button */}
                   <h5 className="location-name card-title text-[#16AC97] text-xl font-medium mb-2">
@@ -75,7 +77,9 @@ const SinglePost = (props) => {
                   </h2>
                 </div>
                 {/* COMMENT FORM HERE */}
-                {Auth.loggedIn() && <CommentForm  restaurantId={restaurant._id}/>}
+                {Auth.loggedIn() && (
+                  <CommentForm restaurantId={restaurant._id} />
+                )}
 
                 {/* {restaurant.commentCount > 0 && <CommentList comments={restaurant.comments} />} */}
                 <CommentList comments={restaurant.comments} />

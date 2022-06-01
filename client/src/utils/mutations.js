@@ -57,8 +57,8 @@ export const ADD_COMMENT = gql`
 `;
 
 export const DELETE_RESTAURANT = gql`
-  mutation deleteRestaurant($restaurantId: ID!, $userId: ID!) {
-    deleteRestaurant(restaurantId: $restaurantId, userId: $userId){
+  mutation deleteRestaurant($restaurantId: ID!) {
+    deleteRestaurant(restaurantId: $restaurantId){
       _id
     }
   }

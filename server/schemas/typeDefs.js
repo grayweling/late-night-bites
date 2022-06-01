@@ -54,7 +54,7 @@ const typeDefs = gql`
       addRestaurant(content: RestaurantInput): Restaurant
       addComment(restaurantId: ID!, commentBody: String): Restaurant
       deleteRestaurants: Restaurant
-      deleteRestaurant(restaurantId: ID!, userId: ID!): Restaurant
+      deleteRestaurant(restaurantId: ID!): Restaurant
   }
 `;
 
