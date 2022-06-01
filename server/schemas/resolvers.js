@@ -95,8 +95,8 @@ const resolvers = {
     },
     deleteRestaurant: async (parent, { restaurantId }, context) => {
       if (context.user) {
-        return Restaurant.findOneAndDelete(
-          {restaurantId: restaurantId}
+        return Restaurant.findByIdAndRemove(
+          {_id: restaurantId}
         )
       }
       throw new AuthenticationError("You cannot delete a comment that is not yours");
