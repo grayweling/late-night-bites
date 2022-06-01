@@ -29,6 +29,7 @@ export const GET_RESTAURANT = gql`
       description
       foodType
       commentCount
+      username
       comments {
         _id
         createdAt

@@ -6,6 +6,7 @@ import { GET_RESTAURANT } from '../utils/queries';
 import Auth from '../utils/auth';
 import CommentList from '../components/CommentList';
 import CommentForm from '../components/CommentForm';
+import DeleteRestaurant from '../components/DeleteRestaurantBtn';
 
 const SinglePost = (props) => {
   const { id: restaurantId } = useParams();
@@ -71,11 +72,15 @@ const SinglePost = (props) => {
                   </h2>
                 </div>
                 {/* COMMENT FORM HERE */}
-                {Auth.loggedIn() && <CommentForm  restaurantId={restaurant._id}/>}
-
-                {/* {restaurant.commentCount > 0 && <CommentList comments={restaurant.comments} />} */}
-                <CommentList comments={restaurant.comments} />
+                {Auth.loggedIn() && (
+                  <CommentForm restaurantId={restaurant._id} />
+                )}
+                {/* IF YOUR RESTAURANT, DELETE BTN HERE */}
+                {Auth.loggedIn() && (
+                  <DeleteRestaurant restaurantId={restaurant._id} />
+                )}
               </div>
+              <CommentList comments={restaurant.comments} />
             </div>
           </article>
         </div>
