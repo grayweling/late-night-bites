@@ -11,7 +11,7 @@ const RestaurantList = ({restaurants}) => {
         {restaurants && restaurants.map(restaurant => (
             <div className="card-div m-4" key={restaurant._id}>
               <Link to={`/post/${restaurant._id}`}>
-            <div className="w-80 h-64 rounded-lg shadow-lg bg-white max-w-sm">
+            <div className="flex flex-col justify-center w-80 h-64 rounded-lg shadow-lg bg-white max-w-sm">
             {/* <span className="flex justify-center">
               <img className="mt-4 text-center self-center w-14 h-14" src="https://d27jswm5an3efw.cloudfront.net/app/uploads/2019/07/insert-image-html-3-768x510.jpg" alt=""/>
             </span> */}
