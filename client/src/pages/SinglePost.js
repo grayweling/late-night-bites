@@ -52,11 +52,6 @@ const SinglePost = (props) => {
                   />
                 </span>
                 <div className="text-center p-6">
-                  {/* IF YOUR RESTAURANT, DELETE BTN HERE */}
-                  {Auth.loggedIn() && (
-                    <DeleteRestaurant restaurantId={restaurant._id}/>
-                  )}
-
                   {/* Food place name and like button */}
                   <h5 className="location-name card-title text-[#16AC97] text-xl font-medium mb-2">
                     {restaurant.name}
@@ -80,10 +75,12 @@ const SinglePost = (props) => {
                 {Auth.loggedIn() && (
                   <CommentForm restaurantId={restaurant._id} />
                 )}
-
-                {/* {restaurant.commentCount > 0 && <CommentList comments={restaurant.comments} />} */}
+                {/* IF YOUR RESTAURANT, DELETE BTN HERE */}
+                {Auth.loggedIn() && (
+                  <DeleteRestaurant restaurantId={restaurant._id} />
+                )}
               </div>
-                <CommentList comments={restaurant.comments} />
+              <CommentList comments={restaurant.comments} />
             </div>
           </article>
         </div>

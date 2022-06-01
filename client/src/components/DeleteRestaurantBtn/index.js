@@ -1,8 +1,6 @@
 import React from 'react';
 import { useMutation } from '@apollo/client';
 import { DELETE_RESTAURANT } from '../../utils/mutations';
-import { useParams } from 'react-router-dom';
-// import Auth from '../utils/auth';
 
 const DeleteRestaurant = ({restaurantId}) => {
     const [deleteRestaurant, { error }] = useMutation(DELETE_RESTAURANT);
@@ -14,13 +12,23 @@ const DeleteRestaurant = ({restaurantId}) => {
             await deleteRestaurant({
                 variables: {restaurantId}
             })
+
+            window.location.assign("/");
+
         } catch (e) {
             console.error(e);
         }
     }
     return (
-        <button className="text-black" onClick={handleClick}>Delete</button>
-    )
+      <div className="text-center">
+        <button
+          className="text-black hover:text-[#BE95FA]"
+          onClick={handleClick}
+        >
+          Delete Restaurant
+        </button>
+      </div>
+    );
 
 };
 
