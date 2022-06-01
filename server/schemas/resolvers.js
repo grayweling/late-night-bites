@@ -95,7 +95,7 @@ const resolvers = {
     deleteRestaurants: async () => {
       return Restaurant.deleteMany({})
     },
-    singleUpload: async (parent, { file }) => {
+    uploadFile: async (parent, { file }) => {
         const { createReadStream, filename, mimetype, encoding } = await file;
         // Invoking the `createReadStream` will return a Readable Stream.
         // See https://nodejs.org/api/stream.html#stream_readable_streams
@@ -104,7 +104,7 @@ const resolvers = {
         // local-file-output.txt in the current working directory on EACH upload.
         const pathName = path.join(__dirname, `../public/images/${filename}`)
 
-        const out = require('fs').createWriteStream('local-file-output.txt');
+        // const out = require('fs').createWriteStream('local-file-output.txt');
         await stream.pipe(fs.createWriteStream(pathName));
         return { 
           url: `http://localhost:3001/images/${filename}` 

@@ -5,6 +5,7 @@ import {
   InMemoryCache,
   ApolloProvider,
   createHttpLink,
+  ApolloLink
 } from '@apollo/client';
 import { setContext } from '@apollo/client/link/context';
 
@@ -25,20 +26,25 @@ import {createUploadLink} from 'apollo-upload-client';
 // });
 
 const uploadLink = createUploadLink({
-  uri: '/graphql',
+  uri: 'http://localhost:3001/',
+  // uri: process.env.REACT_APP_GRAPHQL_URL,
+  // uri: '/graphql',
 });
 const authLink = setContext((_, { headers }) => {
+
   const token = localStorage.getItem('id_token');
   return {
     headers: {
       ...headers,
-      authorization: token ? `Bearer ${token}` : '',
+      'Apollo-Require-Preflight': 'true',
+      authorization: token ? `Bearer ${token}` : ''
     },
   };
 });
 
 const client = new ApolloClient({
-  link: authLink.concat(uploadLink),
+  // link: authLink.concat(uploadLink),
+  link: ApolloLink.from([ authLink, uploadLink ]),
   cache: new InMemoryCache(),
 });
 

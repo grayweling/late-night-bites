@@ -1,12 +1,16 @@
 import React, { useState } from 'react';
 import { useMutation } from '@apollo/client';
-import { ADD_RESTAURANT } from '../utils/mutations';
+import { ADD_RESTAURANT, UPLOAD_FILE } from '../utils/mutations';
 import { useNavigate } from 'react-router-dom';
 
 const CreatePost = () => {
     const [userFormData, setUserFormData] = useState({ name: '', address: '', description: '', foodType: '' });
     const navigate = useNavigate();
     const [addRestaurant] = useMutation(ADD_RESTAURANT);
+
+    const [uploadFile] = useMutation(UPLOAD_FILE, {
+        onCompleted: data => console.log(data)
+    });
 
     const handleChange = (event) => {
         const { name, value } = event.target;
@@ -16,6 +20,12 @@ const CreatePost = () => {
             [name]: value,
         });
     };
+
+    const handleUpload = async (event) => {
+        const file = event.target.files[0];
+        if(!file) return;
+        uploadFile({variables: {file}})
+    }
 
     const handleFormSubmit = async (event) => {
         event.preventDefault();
@@ -59,7 +69,7 @@ const CreatePost = () => {
                         </span>
 
                         <form method="post" action="/create" encType="multipart/form-data" onSubmit={handleFormSubmit}>
-                            <input type="file" id="post-images" name="image" className="mb-8 mt-32" />
+                            <input type="file" id="post-images" name="image" className="mb-8 mt-32" onChange={handleUpload}/>
 
                             <h3 className="text-center">Name</h3>
                             <input name="name" id="Name" type="text"  onChange={handleChange} value={userFormData.name} placeholder="Enter the name of the place" className="rounded-full text-center w-full mb-8 text-black" />

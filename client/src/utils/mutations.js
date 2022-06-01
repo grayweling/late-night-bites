@@ -39,3 +39,11 @@ export const ADD_RESTAURANT = gql`
     }
   }
 `;
+
+export const UPLOAD_FILE = gql`
+  mutation uploadFile($file: Upload) {
+    uploadFile(file: $file) {
+        url
+    }
+  }
+`;
