@@ -1,4 +1,4 @@
-const { User, Restaurant } = require("../models");
+ const { User, Restaurant } = require("../models");
 const { AuthenticationError } = require("apollo-server-express");
 const { signToken } = require("../utils/auth");
 
@@ -92,6 +92,14 @@ const resolvers = {
     },
     deleteRestaurants: async () => {
       return Restaurant.deleteMany({})
+    },
+    deleteRestaurant: async (parent, { restaurantId }, context) => {
+      if (context.user) {
+        return Restaurant.findOneAndDelete(
+          {restaurantId: restaurantId}
+        )
+      }
+      throw new AuthenticationError("You cannot delete a comment that is not yours");
     }
   },
 };
