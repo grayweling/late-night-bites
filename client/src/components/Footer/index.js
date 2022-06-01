@@ -19,9 +19,9 @@ const Footer = () => {
             </Link>
             {Auth.loggedIn() ? (
             <>
-                <Link to="/asd">
+                {/* <Link to="/asd">
                     <i className="fas fa-chart-bar"></i>
-                </Link>
+                </Link> */}
 
                 <Link to="/create-post">
                     <i className="fa-solid fa-circle-plus"></i>
