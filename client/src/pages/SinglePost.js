@@ -82,8 +82,8 @@ const SinglePost = (props) => {
                 )}
 
                 {/* {restaurant.commentCount > 0 && <CommentList comments={restaurant.comments} />} */}
-                <CommentList comments={restaurant.comments} />
               </div>
+                <CommentList comments={restaurant.comments} />
             </div>
           </article>
         </div>
