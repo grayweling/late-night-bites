@@ -8,7 +8,7 @@ export const RESTAURANTS = gql`
       address
       description
       foodType
-      image
+      userId
       rating
       commentCount
       comments {
@@ -29,7 +29,7 @@ export const GET_RESTAURANT = gql`
       description
       foodType
       commentCount
-      username
+      userId
       comments {
         _id
         createdAt
@@ -38,4 +38,17 @@ export const GET_RESTAURANT = gql`
       }
     }
   }
+`;
+
+export const GET_ME = gql`  
+{
+  me {
+      _id
+      username
+      email
+      restaurants {
+        _id
+      }
+}
+}
 `;

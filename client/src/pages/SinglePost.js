@@ -2,7 +2,7 @@ import React from 'react';
 import { useParams } from 'react-router-dom';
 
 import { useQuery, useMutation } from '@apollo/client';
-import { GET_RESTAURANT } from '../utils/queries';
+import { GET_RESTAURANT, GET_ME } from '../utils/queries';
 import Auth from '../utils/auth';
 import CommentList from '../components/CommentList';
 import CommentForm from '../components/CommentForm';
@@ -18,7 +18,14 @@ const SinglePost = (props) => {
 
   const restaurant = data?.restaurant || {};
 
-  console.log(restaurant);
+  const {data: dataMe } = useQuery(GET_ME);
+
+  const me = dataMe?.me._id || '';
+
+  console.log("Me:", me);
+  
+
+  console.log("restaurant:", restaurant.userId);
 
   if (loading) {
     return <div>Loading...</div>;
@@ -76,9 +83,9 @@ const SinglePost = (props) => {
                   <CommentForm restaurantId={restaurant._id} />
                 )}
                 {/* IF YOUR RESTAURANT, DELETE BTN HERE */}
-                {Auth.loggedIn() && (
+                {Auth.loggedIn() && (me == restaurant.userId) &&
                   <DeleteRestaurant restaurantId={restaurant._id} />
-                )}
+                }
               </div>
               <CommentList comments={restaurant.comments} />
             </div>

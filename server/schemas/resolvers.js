@@ -60,7 +60,8 @@ const resolvers = {
     addRestaurant: async (parent, { content }, context) => {
       //check if user is logged in
       if (context.user) {
-        const restaurant = await Restaurant.create({ ...content });
+        content.userId= context.user._id;
+        const restaurant = await Restaurant.create(content);
         console.log(context.user._id);
         await User.findByIdAndUpdate(
           { _id: context.user._id },
